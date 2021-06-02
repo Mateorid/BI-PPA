@@ -1,0 +1,38 @@
+% ======= Databaze faktu ========
+man(bart).
+man(homer).
+man(abraham).
+man(clancy).
+woman(mona).
+woman(marge).
+woman(liza).
+woman(meggie).
+woman(selma).
+woman(patty).
+woman(jacqueline).
+parent(homer,bart).
+parent(homer,liza).
+parent(homer,meggie).
+parent(abraham,homer).
+parent(marge,bart).
+parent(marge,liza).
+parent(marge,meggie).
+parent(mona,homer).
+parent(jacqueline,marge).
+parent(jacqueline,patty).
+parent(jacqueline,selma).
+married(homer,marge).
+married(abraham,mona).
+married(clancy,jacqueline).
+
+% father(F,X) : man(F) and parent (F,X).
+father(F,X) :- man(F), parent(F,X).
+son(S,X) :- man(S), parent(X,S).
+grandparent(G,X) :- parent(G,Y), parent(Y,X).
+
+ancestor(A, X) :- parent(A, X).
+ancestor(A, X) :- parent(A, Y), ancestor(Y, X).
+
+
+sibling(X,Y) :- parent(Z, X), parent(Z,Y).
+
